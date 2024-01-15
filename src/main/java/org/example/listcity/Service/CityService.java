@@ -12,7 +12,7 @@ public class CityService implements ICityService {
     ICityRepository iCityRepository;
 
     @Override
-    public List<City> findAll() {
+    public Iterable<City> findAll() {
         return iCityRepository.findAll();
     }
 

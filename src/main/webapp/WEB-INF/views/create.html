@@ -5,6 +5,9 @@
     <title>Thêm thành phố</title>
 </head>
 <body>
+<div th:each="item: ${listErr}">
+    <h1 style="color: red" th:text="${item.getDefaultMessage()}"></h1>
+</div>
 <h1>Thêm thành phố</h1>
 <p>
     <a th:href="@{/city}">
@@ -13,6 +16,7 @@
 </p>
 </center>
 <div id="form">
+
     <form th:action="@{/city/save}" method="post" novalidate="novalidate" th:object="${cityNew}">
         <div>
             <label>Tên: </label>
@@ -20,19 +24,21 @@
         </div>
         <div>
             <label>Quốc gia: </label>
-            <input type="text" th:field="*{nameCountry}">
+            <select>
+                <option th:each="categoryL : ${category}" th:text="${categoryL.name}" th:value="${categoryL.name}" th:field="*{nameCountry}"></option>
+            </select>
         </div>
         <div>
             <label>Diện tích: </label>
-            <input type="text" th:field="*{square}">
+            <input type="number" th:field="*{square}">
         </div>
         <div>
             <label>Dân số: </label>
-            <input type="text" th:field="*{population}">
+            <input type="number" th:field="*{population}">
         </div>
         <div>
             <label>GDP: </label>
-            <input type="text" th:field="*{GDP}">
+            <input type="number" th:field="*{GDP}">
         </div>
         <div>
             <label>Giới thiệu: </label>
@@ -42,4 +48,3 @@
     </form>
 </div>
 </body>
-</html>
